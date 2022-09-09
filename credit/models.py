@@ -11,23 +11,26 @@ class Token(models.Model):
 
 
 class Income(models.Model):
-    question_text = models.CharField(max_length=200)
+    text = models.CharField(max_length=200)
     date = models.DateTimeField()
     amount = models.BigIntegerField()
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return '{}  -----  {}'.format(
-            self.question_text,
+            self.text,
             self.amount
         )
 
 
 class Expense(models.Model):
-    question_text = models.CharField(max_length=200)
+    text = models.CharField(max_length=200)
     date = models.DateTimeField()
     amount = models.BigIntegerField()
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.question_text
+        return '{}  -----  {}'.format(
+            self.text,
+            self.amount
+        )
